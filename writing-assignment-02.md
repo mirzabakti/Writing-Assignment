@@ -136,7 +136,7 @@ console.log(greeting);
 
 Switch statement digunakan untuk melakukan pengecekan banyak kondisi dengan lebih mudah dan ringkas. Switch berisi variabel atau expression yang akan dievaluasi. Case diikuti dengan nilai yang valid. Break digunakan untuk keluar dari proses switch. Default memiliki fungsi yang sama dengan keyword else pada control flow if-else.
 
-> :warning: Switch case tidak dapat digunakan untuk membandingkan suatu nilai
+> :warning: **Warning:** Switch case tidak dapat digunakan untuk membandingkan suatu nilai
 
 ***
 
