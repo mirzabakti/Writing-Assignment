@@ -1,16 +1,18 @@
-# Writing-Assignment-Week-02-Mirza Bakti Sukaryana
+> 🦖 Impact Byte x Skilvul batch Joyful Jasper 🐲
+# Writing-Assignment-Week-02-Mirza Bakti Sukaryana 😆 🚀
 
-## Table Of ‘Contents’
-<ol>
-  <li>Function</li>
-  <li>Scope</li>
-  <li>Conditional</li>
-  <li>Loop</li>
-  <li>Array</li>
-  <li>Object</li>
-  <li>DOM (weekly summary 03)</li>
-  <li>Git (weekly summary 01)</li>
-</ol>
+| Table Of ‘Contents’ |
+| ---------------------- |
+| <ol> |
+|  <li>Function</li> |
+|  <li>Scope</li> |
+|  <li>Conditional</li> |
+|  <li>Loop</li> |
+|  <li>Array</li> |
+|  <li>Object</li> |
+|  <li>DOM (Writing-Assignment-Week-03)</li> |
+|  <li>Git (Writing-Assignment-Week-01)</li> |
+| </ol> |
 
 ***
 
@@ -51,7 +53,7 @@ greeting("Harry", "French");
 /* output Bonjour Harry! */
 ```
 
-Nilai kembalian tidak hanya string, bisa saja berupa number, boolean, objek ataupun array.
+> :memo: **Note:** Nilai kembalian tidak hanya string, bisa saja berupa number, boolean, objek ataupun array.
 
 ***
 
@@ -87,7 +89,7 @@ let number  = multiply(20);
 console.log(total);
 ```
 
-Perlu kita perhatikan bahwa, ketika kita lupa menuliskan keyword let, const atau var pada script ketika membuat sebuah variabel, maka variabel tersebut akan menjadi global.
+> :warning: **Warning:** Perlu kita perhatikan bahwa, ketika kita lupa menuliskan keyword let, const atau var pada script ketika membuat sebuah variabel, maka variabel tersebut akan menjadi global.
 
 ***
 
@@ -132,7 +134,9 @@ console.log(greeting);
 /* output Bonjour! */
 ```
 
-Switch statement digunakan untuk melakukan pengecekan banyak kondisi dengan lebih mudah dan ringkas.switch berisi variabel atau expression yang akan dievaluasi. Case diikuti dengan nilai yang valid. Break digunakan untuk keluar dari proses switch. Default memiliki fungsi yang sama dengan keyword else pada control flow if-else.
+Switch statement digunakan untuk melakukan pengecekan banyak kondisi dengan lebih mudah dan ringkas. Switch berisi variabel atau expression yang akan dievaluasi. Case diikuti dengan nilai yang valid. Break digunakan untuk keluar dari proses switch. Default memiliki fungsi yang sama dengan keyword else pada control flow if-else.
+
+> :warning: Switch case tidak dapat digunakan untuk membandingkan suatu nilai
 
 ***
 
@@ -194,7 +198,7 @@ while (i <= 100) {
 }
 ```
 
-while lebih cocok digunakan pada kasus di mana kita tidak tahu pasti berapa banyak perulangan yang diperlukan.
+> :bulb: **Tip:** while lebih cocok digunakan pada kasus di mana kita tidak tahu pasti berapa banyak perulangan yang diperlukan.
 
 #### do while
 
@@ -228,7 +232,7 @@ while (i <= 5) {
 
 Array merupakan tipe data yang dapat mengelompokkan lebih dari satu nilai dan menempatkannya dalam satu variabel.
 
-Perbedaan array dengan object adalah data pada array disusun secara berurutan dan diakses menggunakan index.
+> :memo: **Note:** Perbedaan array dengan object adalah data pada array disusun secara berurutan dan diakses menggunakan index.
 
 ```js
 let myArray = ['Cokelat', 42.5, 22, true, 'Programming'];
