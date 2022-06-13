@@ -1,4 +1,4 @@
-> 🦖 Impact Byte x Skilvul batch Joyful Jasper 🐲
+> 🦖 **Impact Byte x Skilvul batch Joyful Jasper** 🐲
 # Writing-Assignment-Week-02-Mirza Bakti Sukaryana 😆 🚀
 
 | Table Of ‘Contents’ |
@@ -366,4 +366,6 @@ Yang perlu diperhatikan adalah mengubah nilai berbeda dengan menginisialisasi ul
 
 Ketika kita mengubah object menggunakan assignment operator dan property/key-nya sudah ada, maka nilai di dalamnya akan tergantikan dengan nilai yang baru. Sedangkan, jika property dengan nama key yang ditentukan tidak ditemukan, maka properti baru akan ditambahkan ke object.
 
+***
 
+> **Sharing is Learning** ❤️‍🔥
