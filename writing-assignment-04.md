@@ -8,8 +8,7 @@
 |  <li>Back to ES6</li> |
 |  <li>React Component</li> |
 |  <li>React State</li> |
-|  <li>React useEffect</li> |
-|  <li>React Hooks</li> |
+|  <li>React useEffect/ Hooks</li> |
 |  <li>React Router</li> |
 | </ol> |
 
@@ -304,21 +303,264 @@ Beberapa fitur penting lain yang dapat kita gunakan di ES6 adalah `fetch()` dan 
 
 ## 3. React Component
 
+Secara konsep, komponen mirip dengan fungsi pada Javascript. Komponen menerima beberapa masukan (biasa disebut “props”) dan mengembalikan element React yang mendeskripsikan apa yang seharusnya tampil pada layar. Komponen mempermudah untuk memecah antarmuka pengguna menjadi bagian tersendiri, bagian yang bisa digunakan kembali.
+
+```js
+function Welcome(props) {
+  return <h1>Halo, {props.name}</h1>;
+}
+
+class Welcome extends React.Component {
+  render() {
+    return <h1>Halo, {this.props.name}</h1>;
+  }
+}
+```
+
+> :memo: **Note:** Selalu awali nama komponen dengan sebuah huruf kapital. React memperlakukan awalan komponen dengan huruf kecil sebagai tag dari DOM. Sebagai contoh, ```<div />```, merepresentasikan sebuah HTML div tag, tetapi <Welcome /> merepresentasikan sebuah komponen dan membutuhkan Welcome to be in scope.
+
+```js
+// import file css
+import './App.css';
+// Penggunaan Export dam Import
+import ExportHalaman from './components/ExportHalaman';
+// Import local img
+import Landscape from "./img/landscape.jpg"
+function App() {
+  // tempat membuat Variabel sebelum return
+  let pulang = "ke kampung halaman";
+  const perkalian = 9 * 9;
+  // event internal
+  const handleClick = () => {
+    console.log("burung hantu")
+  };
+  // conditional
+  const isLogin = true
+  // Map
+  const data = [
+    {
+      orang: "Arrie",
+    },
+    {
+      orang: "Baharudin",
+    },
+    {
+      orang: "Mirza"
+    }];
+
+  return (
+    // JSX
+    // react membutuhkan pembunggkus untuk parentnya
+    <div className="App">
+      <header className="App-header">
+        {/* import halaman */}
+        <ExportHalaman />
+
+        {/* url image */}
+        <img width={200} src="https://images.pexels.com/photos/12656616/pexels-photo-12656616.jpeg?cs=srgb&dl=pexels-till-daling-12656616.jpg&fm=jpg" alt='landscape' />
+
+        {/* local image */}
+        <br />
+        <img width={200} src={Landscape} alt='landscape' />
+
+
+        {/* Penggunaan class pada React yaitu menggunakan ClassName */}
+        <h3 className='nama'>Mirza</h3>
+
+        {/* Curly Braces in JSX */}
+        <h2> {7 + 7} </h2>
+
+        {/* Variabel harus dipanggil Terlebih dahulu */}
+        <h4> {pulang} </h4>
+        <h3> {perkalian} </h3>
+        <p> {"surabaya".toUpperCase()} </p>
+
+        {/* Event */}
+        {/* Pembuatan Button secara inlane */}
+        <button onClick={() => console.log("inlane Button")}>Inlane Button</button>
+        <br />
+        <button onClick={() => console.log("ayam goreng")}>tekan</button>
+
+        {/* pembuattan button secara internal */}
+        <br />
+        <button onClick={handleClick}>Tes</button>
+
+        {/* checkbox */}
+        <br />
+        <input type={"checkbox"} onChange={() => console.log("ayam")} />
+
+        {/* input form */}
+        <br />
+        <input type={"text"} onChange={(event) => console.log(event.target.value)} />
+
+
+        <br />
+        {/* conditional */}
+        {/* satu - satunya codisional yang bisa dipakai pada React Js Ternary operator */}
+        {isLogin ? <p>sudah login</p> : <p>belum login</p>}
+
+
+        {/* maping menampilkan Array of object */}
+        {data.map((item, index) => (
+          <h1 key={index}>{item.orang}</h1>
+        ))}
+      </header>
+    </div>
+  );
+}
+
+export default App;
+```
+
+
 ***
 
 ## 4. React State
+
+State adalah data yang dimiliki oleh sebuah komponen (statefull component). Dan ada kemungkinan datanya dapat berubah.
+
+Membuat state di react membutuhkan useState().
+
+useState, adalah fitur dari react untuk membuat state di dalam functional component.
+
+**cara sederhana useState Hooks**
+1. import useState dari react 
+   ```js
+   import {useState} from "react";
+   ```
+2. menuliskan userState hooks
+   ```js
+    const [nama, setNama] = useState("Baharudin");
+   ```
+3. memanggil data useState
+   ```js
+   <h3>{nama}<h3>
+   ```
+
 
 ***
 
 ## 5. React useEffect
 
+Hooks merupakan fitur baru di React 16.8. baru dikenalkan pada tahun 2018 Fitur ini memungkinkan Anda menggunakan state dan fitur React lainnya tanpa menuliskan sebuah kelas.
+
+Hooks yang seriang diggunakan, adalah useState dan useEffect. untuk materi hooks ini akan lebih fokus pada useEffect
+
+**Perbedaan class dan functional**
+class menggunakan state sedangkan functional menggunakan state hooks sekilas hasil yang dikeluarkannya sama tidak ada perbedaaan
+
+**kelebihan penggunaan hooks**
+- lebih rapi penggunaannya
+- lebih pendek 
+- mudah dimengerti
+
+**useEffect hooks**
+useEffect merupakan hooks yang bisa digunakan untuk menggunakan ***lifecycle*** pada functional component dengan mudah
+
+**Apa itu lifecycle**
+LifeCycle yaitu sebuah proses yang dilakukan component yang sedang berjalan 
+
+LifeCycle yang ada didalam hooks hanya mennggunakan useEffect yang menggabugkan 
+- Mounting
+- Updating
+- Unmouting
+
+**Cara Penggunaan useEffect usntuk menampilkan data Github**
+
+1. instal axios dengan format: **npm i axios**
+2. import axios dan useEffect
+3. siapkan data github
+4. berikut ini penggunaan useEffect pada react
+```js
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+function App() {
+  const [dataGithub,setDataGithub] = useState({});
+
+  // useeffect call api
+  let url = "https://github.com/baharudin-solusite";
+
+  useEffect(() => {
+    async function getAPI() {
+      const result = await axios.get(url);
+      console.log(result);
+      setDataGithub(result.data);
+    }
+
+    getAPI();
+  }, []);
+
+  console.log(dataGithub);
+
+  return (
+    <div className="App">
+      <h1>Use Effect</h1>
+
+      {/* useEffect data github  */}
+      <h1>Nama github: {dataGithub.name}</h1>
+      <h1>Username: {dataGithub.login}</h1>
+      <h1>id: {dataGithub.id}</h1>
+  );
+}
+
+export default App;
+```
+
 ***
 
-## 6. React Hooks
 
-***
+## 6. React Router
 
-## 7. React Router
+React Router adalah library perutean klien dan sisi server berfitur lengkap untuk React, library JavaScript untuk membangun antarmuka pengguna. React Router berjalan di mana saja. React berjalan; di web, di server dengan node.js, dan di React Native.
+
+```js
+import ReactDOM from "react-dom/client";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import App from "./App";
+import Expenses from "./routes/expenses";
+import Invoices from "./routes/invoices";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root")
+);
+root.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route path="expenses" element={<Expenses />} />
+        <Route path="invoices" element={<Invoices />} />
+      </Route>
+    </Routes>
+  </BrowserRouter>
+);
+```
+
+```js
+import { Outlet, Link } from "react-router-dom";
+
+export default function App() {
+  return (
+    <div>
+      <h1>Bookkeeper</h1>
+      <nav
+        style={{
+          borderBottom: "solid 1px",
+          paddingBottom: "1rem",
+        }}
+      >
+        <Link to="/invoices">Invoices</Link> |{" "}
+        <Link to="/expenses">Expenses</Link>
+      </nav>
+      <Outlet />
+    </div>
+  );
+}
+```
 
 ***
 
