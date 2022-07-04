@@ -428,7 +428,7 @@ useState, adalah fitur dari react untuk membuat state di dalam functional compon
    ```
 2. menuliskan userState hooks
    ```js
-    const [nama, setNama] = useState("Baharudin");
+    const [nama, setNama] = useState("Mirza");
    ```
 3. memanggil data useState
    ```js
