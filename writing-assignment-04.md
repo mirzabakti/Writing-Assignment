@@ -50,8 +50,6 @@ _Package manager_ adalah software yang digunakan untuk menginstalasi dan mengelo
 
 NPM (Node Package Manager) adalah sebuah package manager yang dibuat menggunakan teknologi [Node](https://nodejs.org/en/). Untuk menggunakannya kita harus menginstal Node terlebih dahulu di sistem.
 
-__Catatan__: Selain untuk NPM, kita juga akan membutuhkan Node untuk membuat sebuah aplikasi _backend_ berbasis Node di latihan React _server-side_
-
 * Instalasi Node
 	
 	Buka laman [Node](https://nodejs.org/en/). untuk membaca cara instalasi Node di sistem operasi yang digunakan.
