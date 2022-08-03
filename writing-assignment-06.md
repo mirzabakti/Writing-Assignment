@@ -460,7 +460,9 @@ melihat semua ini table di database
 
 - Membuat table baru di database tersebut dengan nama “books”. Sintaks yang dibuat menggunakan **CREATE TABLE [name]** memberikan definisi tiap kolom di table tersebut.
 
+```sql
 
+```
 
 ```
 DROP TABLES nama_db;
@@ -468,109 +470,134 @@ DROP TABLES nama_db;
 
 menghapus table yang diinginkan jika ingin dihapus.
 
-## DDL (Data Definition Language)
+```sql
+
+```
+
+### DDL (Data Definition Language)
 
 kumpulan perintah SQL yang digunakan untuk membuat, mengubah dan menghapus struktur dan definisi metadata dari objek-objek Database.
 
-### ALTER
+#### ALTER
 
 - Ketika ingin menambah atau menghilangkap kolom di table yang dipilih, kita bisa menggunakan **ALTER** dan menggunakan **ADD** untuk menambah kolom atau **DROP COLUMN** untuk menghapus kolom seperti contoh diatas.
 
+```sql
 
+```
 
-### INSERT INTO
+#### INSERT INTO
 
 perintah yang di gunakan untuk input data ke tabel
 
+```sql
+
+```
 
 
-### INSERT INTO (multiple)
-
-
-
-### SELECT
+#### SELECT
 
 Digunakan untuk melakukan query melihat isi data di table yang dipilih
 
+```sql
 
+```
 
-### SELECT ALIAS (AS)
+#### SELECT ALIAS (AS)
 
 **AS** untuk menggunakan mengubah nama kolom agar output kolomnya sesuai dengan yang kita inginkan
 
+```sql
 
+```
 
-### WHERE
+#### WHERE
 
 **WHERE** digunakan untuk mencari data dengan kondisi tertentu dengan command WHERE [column_name] = condition.
 
+```sql
 
+```
 
-### AND, OR, NOT
+#### AND, OR, NOT
 
 **AND** untuk mencari query dengan kondisi lebih dari satu
 **OR** untuk mencari query dengan kondisi salah satu.
 **NOT** untuk mencari query yang tidak ada dalam kondisi yang di definisikan.
 Contoh mencari row dengan kondisi id = 1 atau author1 = ‘eddy’. Maka kita akan muncul 2 row dengan salah satu kondisi yang di declare.
 
+```sql
 
+```
 
-### ORDER BY
+#### ORDER BY
 
 Untuk melakukan ordering menggunakan **ORDER BY** dengan menggunakan 2 kondisi yaitu ASC dan DESC. Struktur commandnya adalah ORDER BY [column_name] ASC / DESC.
 
-### LIMIT
+```sql
+
+```
+
+#### LIMIT
 
 untuk membatasi berapa query yang akan dimunculkan dengan urutan dari atas.
 
-### UPDATE
+```sql
+
+```
+
+#### UPDATE
 
 UPDATE digunakan untuk melakukan perbaruan data di table.
 
+```sql
 
+```
 
-### DELETE
+#### DELETE
 
 Digunakan untuk melakukan penghapusan data
 **WARNING !!** ketika ingin melakukan delete jangan lupa menggunakan WHERE agar semua data tidak terhapus
 
+```sql
 
+```
 
-## Relasi di SQL
+### Relasi di SQL
 
-### 1. One to Many
+#### 1. One to Many
 
 - Paling Sering Digunakan
 - Satu baris dalam tabel dapat memiliki beberapa baris di table relasinya
 
+![image](https://user-images.githubusercontent.com/66278794/182596682-33c0149d-d8ee-450e-a493-a974f9362d7d.png)
 
-
-### 2. Many to Many
+#### 2. Many to Many
 
 - Digunakan ketika kedua tabel yang berelasi dapat memiliki beberapa baris di tabel relasinya.
 
+![image](https://user-images.githubusercontent.com/66278794/182596712-5f9cc5da-402c-408b-b95a-23a8f7b82c29.png)
 
-
-### 3. One to One
+#### 3. One to One
 
 - Sangat jarang digunakan
 - Diimplementasikan dengan cara yang sama seperti One to Many tetapi dengan kondisi tambahan (foreign key merupakan primary key)
 
+![image](https://user-images.githubusercontent.com/66278794/182596734-64ed1205-bb59-4c49-a899-6ac9b1aeef16.png)
 
-
-## Database Normalization
+### Database Normalization
 
 Teknik analisis data yang mengorganisasikan atribut-atribut data dengan cara mengelompokkan sehingga terbentuk entitas yang non-redundant, stabil, dan fleksible.
 
-### Tujuan Database Normalization
+#### Tujuan Database Normalization
 
 - Menghilangkan redundan data pada database.
 - Memudahkan juka ada perubahan struktur table database.
 - Memperkecil pengaruh jika ada perubahan dari struktur table database.
 
-## Bentuk Database Normalization
+### Bentuk Database Normalization
 
-### 1. First Normal Form (1NF)
+#### 1. First Normal Form (1NF)
 
 1. Menghilangkan multiple value pada sebuah kolom table database
 2. Sebuah table memenuhi kaidah 1NF jika :
@@ -578,75 +605,87 @@ Teknik analisis data yang mengorganisasikan atribut-atribut data dengan cara men
    -- Setiap kolom memiliki nama yang unik
 3. Urutan penyimpanan data tidak menjadi masalah
 
+![image](https://user-images.githubusercontent.com/66278794/182596784-3e022c0c-3c6b-4a1a-9929-159f1e4a8747.png)
 
-
-### 2. Second Normal Form (2NF)
+#### 2. Second Normal Form (2NF)
 
 1. Harus sudah dalam bentuk 1NF untuk mendapatkan 2NF
 2. Menghapus beberapa subset data yang ada pada tabel dan menempatkan mereka pada tabel terpisah.
 
+![image](https://user-images.githubusercontent.com/66278794/182596864-531db2ab-0796-485a-8870-c26b99387f37.png)
 
-
-### 3. Third Normal Form (3NF)
+#### 3. Third Normal Form (3NF)
 
 Menghilangkan seluruh atribut atau field yang tidak berhubungan dengan primary key. Dengan demikian tidak ada ketergantungan transitif pada setiap kandidat key.
 
-## Key di SQL
+### Key di SQL
 
-### 1. Super Key
+#### 1. Super Key
 
 - Kumpulan dari satu atau lebih dari satu key yang dapat digunakan untuk mengidentifikasi record secara unik dalam sebuah tabel.
 - Super Key adalah superset dari Candidate Key.
 
-### 2. Candidate Key
+#### 2. Candidate Key
 
 - Kumpulan satu atau lebih fields/columns yang dapat mengidentifikasi record secara unik dalam tabel.
 - Bisa jadi ada beberapa Candidate Keys di dalam satu tabel
 - Setiap Candidate Key bisa digunakan sebagai Primary Key.
   Candidate Key adalah super key yang tidak mempunyai value yang berulang
 
-### 3. Primary Key
+#### 3. Primary Key
 
 - Kumpulan satu atau lebih fields/columns dari sebuah tabel yang secara unik mengidentifikasi sebuah record dalam tabel database.
 - Valuenya tidak boleh berupa null ataupun duplicate value.
   Hanya boleh salah satu Candidate Key yang bisa menjadi Primary Key.
 
-### 4. Alternate Key
+#### 4. Alternate Key
 
 - Key yang bisa digunakan menjadi primary key.
 - Pada dasarnya, Key ini merupakan candidate key yang tidak dijadikan primary key.
 
-### 5. Unique Key
+#### 5. Unique Key
 
 - Kumpulan dari satu atau lebih fields/columns di sebuah table database yang secara unik mengidentifikasi sebuah record dalam table database tersebut.
 - Hampir sama dengan Primary key, namun value dari Unique Key bisa berupa satu buah null value di dalam sebuah table database, dan Unique Key tidak bisa memiliki duplicate values
 
-### 6. Foreign Key
+#### 6. Foreign Key
 
 Field di sebuah table database yang menjadi Primary Key di table database lain.
 Value dari Foreign key bisa menerima multiple null dan duplicate values.
 
-## Join Multiple Table
+### Join Multiple Table
 
-### 1. Inner Join
+#### 1. Inner Join
 
 - Semua baris akan diambil dari kedua table yang akan di JOIN, selama columns cocok dengan kondisi yang sudah di tentukan.
 - Memungkinkan baris dari salah satu tabel muncul di hasil jika dan hanya jika kedua tabel memenuhi kondisi yang ditentukan dalam klausa ON.
 
-### 2. Left Join
+```sql
+
+```
+
+#### 2. Left Join
 
 - Semua records dari table di sisi kiri JOIN statement akan di pilih.
 - Jika record yang di pilih dari table kiri tidak memiliki record yang cocok pada table JOIN yang kanan, maka record tersebut masih dipilih, dan kolom pada table yang kanan akan bernilai NULL.
 
-### 3. Right Join
+```sql
+
+```
+
+#### 3. Right Join
 
 semua records dari table di sisi kiri JOIN statement akan di pilih, bahkan jika table di sebelah kiri tidak memiliki record yang cocok.
 
-## Aggregate Functions
+```sql
+
+```
+
+### Aggregate Functions
 
 Mengambil satu nilai setelah melakukan perhitungan pada sekumpulan nilai
 
-### Tipe Aggregate Funtions
+#### Tipe Aggregate Funtions
 
 **1. MAX** : fungsi mengembalikan nilai terbesar dari kolom yang dipilih.
 **2. MIN** : fungsi mengembalikan nilai terkecil dari kolom yang dipilih.
@@ -654,19 +693,23 @@ Mengambil satu nilai setelah melakukan perhitungan pada sekumpulan nilai
 **4. COUNT** : fungsi mengembalikan jumlah baris yang cocok dengan kriteria yang ditentukan.
 **5. AVG** : fungsi mengembalikan nilai rata-rata kolom numerik
 
-## UNION
+```sql
+
+```
+
+### UNION
 
 - Digunakan untuk menggabungkan kumpulan hasil dari dua atau lebih pernyataan SELECT.
 - Setiap pernyataan SELECT dalam UNION harus memiliki jumlah kolom yang sama
 - Kolom juga harus memiliki tipe data yang serupa
 - Kolom dalam setiap pernyataan SELECT juga harus dalam urutan yang sama
 
-## GROP BY
+### GROP BY
 
 - Mengelompokkan baris yang memiliki nilai yang sama ke dalam baris ringkasan
 - Sering digunakan dengan fungsi agregat untuk mengelompokkan kumpulan hasil dengan satu atau lebih kolom.
 
-## HAVING
+### HAVING
 
 HAVING ditambahkan ke SQL karena kata kunci WHERE tidak dapat digunakan dengan aggregate functions.
 
