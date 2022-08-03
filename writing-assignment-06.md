@@ -675,7 +675,10 @@ Value dari Foreign key bisa menerima multiple null dan duplicate values.
 - Memungkinkan baris dari salah satu tabel muncul di hasil jika dan hanya jika kedua tabel memenuhi kondisi yang ditentukan dalam klausa ON.
 
 ```sql
-
+SELECT *
+FROM buku
+INNER JOIN penerbit
+ON buku.penerbit = penerbit.id;
 ```
 
 #### 2. Left Join
@@ -684,7 +687,10 @@ Value dari Foreign key bisa menerima multiple null dan duplicate values.
 - Jika record yang di pilih dari table kiri tidak memiliki record yang cocok pada table JOIN yang kanan, maka record tersebut masih dipilih, dan kolom pada table yang kanan akan bernilai NULL.
 
 ```sql
-
+SELECT *
+FROM buku
+LEFT JOIN penerbit
+ON buku.penerbit = penerbit.id;
 ```
 
 #### 3. Right Join
@@ -692,7 +698,10 @@ Value dari Foreign key bisa menerima multiple null dan duplicate values.
 semua records dari table di sisi kiri JOIN statement akan di pilih, bahkan jika table di sebelah kiri tidak memiliki record yang cocok.
 
 ```sql
-
+SELECT *
+FROM buku
+RIGHT JOIN penerbit
+ON buku.penerbit = penerbit.id;
 ```
 
 ### Aggregate Functions
@@ -708,7 +717,19 @@ Mengambil satu nilai setelah melakukan perhitungan pada sekumpulan nilai
 **5. AVG** : fungsi mengembalikan nilai rata-rata kolom numerik
 
 ```sql
+SELECT id, ISBN, judul, penulis, penerbit, MAX(harga)
+AS harga, stock
+FROM buku
+WHERE stock < 10;
 
+SELECT id, ISBN, judul, penulis, penerbit, MIN(harga)
+AS harga, stock
+FROM buku;
+
+SELECT COUNT(*)
+AS Harga_Dibawah_100
+FROM buku
+WHERE harga < 100000;
 ```
 
 #### UNION
