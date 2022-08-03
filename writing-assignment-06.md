@@ -461,7 +461,11 @@ melihat semua ini table di database
 - Membuat table baru di database tersebut dengan nama “books”. Sintaks yang dibuat menggunakan **CREATE TABLE [name]** memberikan definisi tiap kolom di table tersebut.
 
 ```sql
-
+CREATE TABLE penerbit(
+    id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(50) NULL,
+    kota VARCHAR(50) NULL
+);
 ```
 
 ```
@@ -471,7 +475,7 @@ DROP TABLES nama_db;
 menghapus table yang diinginkan jika ingin dihapus.
 
 ```sql
-
+DROP table movie;
 ```
 
 ### DDL (Data Definition Language)
@@ -483,7 +487,10 @@ kumpulan perintah SQL yang digunakan untuk membuat, mengubah dan menghapus struk
 - Ketika ingin menambah atau menghilangkap kolom di table yang dipilih, kita bisa menggunakan **ALTER** dan menggunakan **ADD** untuk menambah kolom atau **DROP COLUMN** untuk menghapus kolom seperti contoh diatas.
 
 ```sql
-
+ALTER TABLE books
+    ADD `price` INT DEFAULT 0,
+    ADD `status` ENUM('available', 'out of stock', 'limited'),
+    DROP `place_sell`;
 ```
 
 #### INSERT INTO
@@ -491,7 +498,10 @@ kumpulan perintah SQL yang digunakan untuk membuat, mengubah dan menghapus struk
 perintah yang di gunakan untuk input data ke tabel
 
 ```sql
-
+INSERT INTO books VALUES
+    (NULL,'Mirza', 'Bakti', 'Sukaryana', 'Belajar Algoritma', 'Belajar algoritma dasar disertai contoh nyata',200, default, 199000, 'available'),
+    (NULL,'Eichiiro', 'Oda', 'Sensei', 'One Piece', 'Kisah bajak laut mencari harta karun berharga',99, default, 249000, 'limited'),
+    (NULL,'Duta', 'Sheila', 'On Seven', 'Kisah Klasik', 'Kumpulan syair-syair hits',4, default, 229000, 'out of stock');
 ```
 
 
@@ -500,7 +510,7 @@ perintah yang di gunakan untuk input data ke tabel
 Digunakan untuk melakukan query melihat isi data di table yang dipilih
 
 ```sql
-
+SELECT * FROM books;
 ```
 
 #### SELECT ALIAS (AS)
@@ -508,7 +518,7 @@ Digunakan untuk melakukan query melihat isi data di table yang dipilih
 **AS** untuk menggunakan mengubah nama kolom agar output kolomnya sesuai dengan yang kita inginkan
 
 ```sql
-
+SELECT id AS ID, author1 AS A1, author2 AS A2, author3 AS A3 from books;
 ```
 
 #### WHERE
@@ -516,7 +526,7 @@ Digunakan untuk melakukan query melihat isi data di table yang dipilih
 **WHERE** digunakan untuk mencari data dengan kondisi tertentu dengan command WHERE [column_name] = condition.
 
 ```sql
-
+SELECT * FROM books WHERE id = 3;
 ```
 
 #### AND, OR, NOT
@@ -527,7 +537,11 @@ Digunakan untuk melakukan query melihat isi data di table yang dipilih
 Contoh mencari row dengan kondisi id = 1 atau author1 = ‘eddy’. Maka kita akan muncul 2 row dengan salah satu kondisi yang di declare.
 
 ```sql
+SELECT * FROM books WHERE id = 1 AND price >= 100000;
 
+SELECT * FROM books WHERE stock > 100 OR price <= 200000;
+
+SELECT * FROM books WHERE NOT status = 'out of stock';
 ```
 
 #### ORDER BY
@@ -535,7 +549,7 @@ Contoh mencari row dengan kondisi id = 1 atau author1 = ‘eddy’. Maka kita ak
 Untuk melakukan ordering menggunakan **ORDER BY** dengan menggunakan 2 kondisi yaitu ASC dan DESC. Struktur commandnya adalah ORDER BY [column_name] ASC / DESC.
 
 ```sql
-
+SELECT * FROM books ORDER BY id;
 ```
 
 #### LIMIT
@@ -543,7 +557,7 @@ Untuk melakukan ordering menggunakan **ORDER BY** dengan menggunakan 2 kondisi y
 untuk membatasi berapa query yang akan dimunculkan dengan urutan dari atas.
 
 ```sql
-
+SELECT * FROM books LIMIT 2;
 ```
 
 #### UPDATE
@@ -551,7 +565,7 @@ untuk membatasi berapa query yang akan dimunculkan dengan urutan dari atas.
 UPDATE digunakan untuk melakukan perbaruan data di table.
 
 ```sql
-
+UPDATE books SET author1 = 'JK Rowling', price = '125000' WHERE id = 1;
 ```
 
 #### DELETE
@@ -560,7 +574,7 @@ Digunakan untuk melakukan penghapusan data
 **WARNING !!** ketika ingin melakukan delete jangan lupa menggunakan WHERE agar semua data tidak terhapus
 
 ```sql
-
+DELETE FROM books where id = 2;
 ```
 
 ### Relasi di SQL
@@ -697,19 +711,19 @@ Mengambil satu nilai setelah melakukan perhitungan pada sekumpulan nilai
 
 ```
 
-### UNION
+#### UNION
 
 - Digunakan untuk menggabungkan kumpulan hasil dari dua atau lebih pernyataan SELECT.
 - Setiap pernyataan SELECT dalam UNION harus memiliki jumlah kolom yang sama
 - Kolom juga harus memiliki tipe data yang serupa
 - Kolom dalam setiap pernyataan SELECT juga harus dalam urutan yang sama
 
-### GROP BY
+#### GROP BY
 
 - Mengelompokkan baris yang memiliki nilai yang sama ke dalam baris ringkasan
 - Sering digunakan dengan fungsi agregat untuk mengelompokkan kumpulan hasil dengan satu atau lebih kolom.
 
-### HAVING
+#### HAVING
 
 HAVING ditambahkan ke SQL karena kata kunci WHERE tidak dapat digunakan dengan aggregate functions.
 
