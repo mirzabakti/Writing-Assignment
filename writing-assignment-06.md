@@ -193,6 +193,60 @@ Nah, framework yang satu ini punya arsitektur MVC (Model View Controller). Denga
 
 ![image](https://user-images.githubusercontent.com/66278794/182506792-f38abb79-3312-41b7-88b6-007552b31656.png)
 
+#### Penggunaan Express API
+
+Buka Terminal 
+
+ketik format ```npm init -y``` untuk membuat inisial pada projek yang akan menampilkan Package-JSON
+
+instal express dengan format ```npm i express```
+
+instal nodemon dengan format ```npm i -D nodemon``` agar dapat restart application otomatis selama proses development
+
+tambahkan sebuah Script pada PackJSON
+  ```json
+      "start": "node app.js",
+      "dev": "nodemon app.js",
+  ```
+  
+jalankan code ```npm run App.js```
+
+### Basic Syntax expressJS
+
+#### Routes
+
+End point yang diapat kita akses menggunakan URL di website. Didalam routes kita perlu menentukan method API, alamat dan response apa saja yang akan dikeluarkan
+
+![image](https://user-images.githubusercontent.com/66278794/182595670-742bee81-b44f-4fca-8769-1d8e4f1128cb.png)
+
+#### Response
+
+Di dalam route kita dapat mengirim response menggunakan parameter dari route express.js yaitu **“res.Send()”** untuk mengirim plain text ketika kita mengakses route tersebut.
+Documentation : http://expressjs.com/en/api.html#res
+
+#### Status Code
+
+Dalam pengaplikasian back end application, kita sangat perlu memberikan status code sebagai informasi apakah route yang kita akses berjalan sebagaimana mestinya dan tidak terjadi error.
+
+![image](https://user-images.githubusercontent.com/66278794/182595699-cfeea9b0-ef09-4408-a6a0-619a97668258.png)
+
+#### Query
+
+Query merupakan parameter yang digunakan untuk membantu menentukan tindakan yang lebih spesifik daripada hanya sekedar router biasa. Biasanya query ditaruh di akhir route dengan memberikan informasi diawali dengan “?” kemudian tedapat key dan data yang dapat ditindak lanjuti. Ex : **“?q=hello&age=23”**
+
+#### Nested route
+
+digunakan ketika terdapat banyak route yang memiliki nama yang sama atau ingin membuat route yang lebih mendalam
+
+![image](https://user-images.githubusercontent.com/66278794/182595740-c48a7d77-f883-4291-a3a8-4caf875a434e.png)
+
+### Express Middleware
+
+- Middleware function adalah sebuah fungsi yang memiliki akses ke object **request (req)**, object **response (res)**, dan sebuah fungsi **next** didalam request-response cycle.
+- Fungsi next biasanya di berikan nama variable next.
+
+![image](https://user-images.githubusercontent.com/66278794/182595769-4c445127-9be0-4276-ab46-7ae4e23051ac.png)
+
 ```js
 const express = require("express");
 
