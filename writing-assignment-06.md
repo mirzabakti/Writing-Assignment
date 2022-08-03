@@ -426,7 +426,7 @@ link : https://dev.mysql.com/downloads/installer
 
 ### SQL Command
 
-```
+```sql
 SHOW DATABASES
 ```
 
@@ -436,10 +436,18 @@ menunjukkan seluruh list database di mysql kita
 CREATE DATABASE nama_db;
 ```
 
+```sql
+CREATE DATABASE bookstore;
+```
+
 membuat database baru
 
 ```
 USE nama_db;
+```
+
+```sql
+USE bookstore;
 ```
 
 menggunakan database yang sudah ada
@@ -448,9 +456,13 @@ menggunakan database yang sudah ada
 DROP DATABASES nama_db;
 ```
 
+```sql
+DROP DATABASES bookstore;
+```
+
 menghapus / menghilangkan database yang dipilih dari MySQL
 
-```
+```sql
 SHOW TABLES;
 ```
 
@@ -475,7 +487,7 @@ DROP TABLES nama_db;
 menghapus table yang diinginkan jika ingin dihapus.
 
 ```sql
-DROP table movie;
+DROP TABLE movie;
 ```
 
 ### DDL (Data Definition Language)
