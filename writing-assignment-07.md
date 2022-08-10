@@ -395,6 +395,9 @@ ORM adalah suatu metode/teknik pemrograman yang digunakan untuk mengkonversi dat
 
 ```
 npm init -y // utk create project pertama
+```
+
+```
 npm install express mysql2 sequelize dotenv cors
 ```
 
@@ -408,7 +411,7 @@ npm install --save-dave nodemon
 
 **1. Setting Package.json**
 
-```
+```json
 {
   "name": "32-sequelize",
   "version": "1.0.0",
@@ -442,7 +445,7 @@ Hasil dari package.json yang di-create
 
 - buat folder bernama **Config** dan save file dengan **dbConnection.js**
 
-```
+```js
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
 
@@ -462,7 +465,7 @@ module.exports = sequelize;
 
 - create folder models yg berisi file UserModel.js untuk sinkronisasi database pada user
 
-```
+```js
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/dbConnection");
 
@@ -490,7 +493,7 @@ module.exports = UserModel;
 **3. Eksekusi Program**
 buat file index.js untuk mengeksekusi konesi databasenya
 
-```
+```js
 const express = require("express");
 const app = express();
 
@@ -526,7 +529,7 @@ app.listen(PORT, () => {
 **4. Buat Controler**
 buat folder controller lalu buat file UserController.js untuk membedakan antara user dan modelnya.
 
-```
+```js
 const UserModel = require("../models/UserModel");
 
 module.exports = {
@@ -544,7 +547,7 @@ module.exports = {
 **5. Buat Rute**
 Buat folder Route yang isinya index.js, untuk menampung rute-rute aplikasi yang ingin di buat
 
-```
+```js
 const express = require("express");
 const router = express.Router();
 
@@ -613,6 +616,104 @@ https://www.mongodb.com/cloud/atlas
 ***
 
 ## 4. Mongoose
+
+Mongoose adalah library yang bisa dibilang sebagai Object Modelling MongoDB untuk NodeJS.
+
+Mongoose bisa digunakan untuk mengelola hubungan antara data, menyediakan validasi.
+
+Dan juga digunakan untuk menerjemahkan antara objek dalam kode dan representasi Objek tersebut di MongoDB.
+
+https://mongoosejs.com/docs/index.html
+
+### Connect NodeJS and MongoDB
+
+- Install dotenv untuk menampung variabel environment database. Dan juga install MongoDB
+
+```
+npm install dotenv
+```
+
+```
+npm install mongodb
+```
+
+- Buat satu file .env untuk menyimpan variabel database
+
+```sql
+DATABASE_MONGODBATLAS = mongodb+srv://skilvul:skilvul123@cluster0.t7ybq.mongodb.net/?retryWrites=true&w=majority
+```
+
+- Membuat file untuk membuat koneksi, dan interaksi dengan database langsung.
+
+```js
+require("dotenv").config();
+
+const mongoose = require("mongoose");
+
+const url = process.env.DATABASE_MONGODBATLAS || "localhost";
+
+const dbConnection = mongoose.connect(url);
+
+module.exports = dbConnection;
+```
+
+### Penggunaan Mongoose
+
+**1 Instalasi**
+Pastikan NodeJS dan MongoDB juga sudah terinstall.
+
+```
+npm install mongoose
+```
+
+**2 Buat Koneksi**
+
+- Buat file koneksinya dengan folder **config** yang berisi file **dbConnection.js**
+
+```js
+require("dotenv").config();
+
+const mongoose = require("mongoose");
+
+const url = process.env.DATABASE_MONGODBATLAS || "localhost";
+
+const dbConnection = mongoose.connect(url);
+
+module.exports = dbConnection;
+```
+
+- Membuat koneksi dengan menggunakan MongoDB database, yang diletakkan di .env
+
+```sql
+DATABASE_MONGODBATLAS = mongodb+srv://skilvul:skilvul123@cluster0.t7ybq.mongodb.net/?retryWrites=true&w=majority
+
+```
+
+**3 Definisikan Schema DB**
+dari code dibawah ini kita dapat mendefinisikan Skema dan tipe data untuk setiap field yang akan digunakan.
+
+```js
+const mongoose = require("mongoose");
+
+// buat schema models
+
+const UserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    require: true,
+  },
+  email: {
+    type: String,
+  },
+  telephoneNumber: {
+    type: String,
+  },
+});
+
+const UserModel = mongoose.model("user", UserSchema);
+
+module.exports = UserModel;
+```
 
 ***
 
