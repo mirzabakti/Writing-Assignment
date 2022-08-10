@@ -389,11 +389,226 @@ ORM adalah suatu metode/teknik pemrograman yang digunakan untuk mengkonversi dat
 
 ![image](https://user-images.githubusercontent.com/66278794/183961343-8cfe10fd-ae15-403b-9545-6d7b6c0f9144.png)
 
+### Penggunaan Sequelize
 
+#### Instalasi Sequelize
+
+```
+npm init -y // utk create project pertama
+npm install express mysql2 sequelize dotenv cors
+```
+
+Dan terakhir kita instal nodemon utk auto-reload servernya
+
+```
+npm install --save-dave nodemon
+```
+
+### Seting di Sequelize
+
+**1. Setting Package.json**
+
+```
+{
+  "name": "32-sequelize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js" // setting nodemon
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
+```
+
+Hasil dari package.json yang di-create
+
+**2. Setting Database**
+
+- Database yang di pakai adalah MySQL - pastikan user dan password login ke MySQL benar.
+
+- buat folder bernama **Config** dan save file dengan **dbConnection.js**
+
+```
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+
+const host = process.env.HOST || "localhost";
+
+const sequelize = new Sequelize({
+  database: process.env.DATABASE_NAME || "sekolah",
+  username: process.env.DATABASE_USERNAME || "admin123",
+  password: process.env.DATABASE_PASSWORD || "admin123",
+  dialect: "mysql",
+  host,
+});
+
+module.exports = sequelize;
+
+```
+
+- create folder models yg berisi file UserModel.js untuk sinkronisasi database pada user
+
+```
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = require("../config/dbConnection");
+
+const UserModel = sequelize.define(
+  "user",
+  {
+    name: {
+      type: DataTypes.STRING,
+    },
+    email: DataTypes.STRING,
+    birth_date: DataTypes.DATE,
+
+  },
+  {
+    timestamps: true,
+    createdAt: false,
+    updatedAt: false,
+  }
+);
+
+module.exports = UserModel;
+
+```
+
+**3. Eksekusi Program**
+buat file index.js untuk mengeksekusi konesi databasenya
+
+```
+const express = require("express");
+const app = express();
+
+const sequelize = require("./config/dbConnection");
+const UserModel = require("./models/UserModel");
+const router = require("./routes");
+
+const PORT = process.env.PORT || 8000;
+
+app.use(express.json());
+
+async function testConnection() {
+  try {
+    await sequelize.authenticate();
+    console.log("sukses");
+
+    await UserModel.sync({ alter: true });
+  } catch (error) {
+    console.log("error", error);
+  }
+}
+
+testConnection();
+
+app.use(router);
+
+app.listen(PORT, () => {
+  console.log("tes koneksi port", PORT);
+});
+
+```
+
+**4. Buat Controler**
+buat folder controller lalu buat file UserController.js untuk membedakan antara user dan modelnya.
+
+```
+const UserModel = require("../models/UserModel");
+
+module.exports = {
+  getAllUser: async (req, res) => {
+    const users = await UserModel.findAll();
+
+    res.json({
+      message: "sukses ambil data",
+      data: users,
+    });
+  },
+};
+```
+
+**5. Buat Rute**
+Buat folder Route yang isinya index.js, untuk menampung rute-rute aplikasi yang ingin di buat
+
+```
+const express = require("express");
+const router = express.Router();
+
+router.get("/", (req, res) => {
+  res.json({
+    message: "sekolah app",
+  });
+});
+
+// route untuk user
+router.use("/user", userRouter);
+
+module.exports = router;
+```
 
 ***
 
 ## 3. MongoDB
+
+MongoDB adalah salah satu database open source NoSQL yang cukup populer digunakan.
+
+MongoDB sering dipakai untuk aplikasi berbasis Cloud, Big Data maupun Grid COmputing.
+
+Jika SQL menyimpan data menggunakan relasi tabel, MongoDB menggunakan dokumen dengan format JSON.
+
+NoSQL adalah Not Only SQL. Artinya kita bisa mengolah database dengan fleksibel dan tidak membutuhkan Query. Akhirnya kita memiliki skalabilitas yang tinggi sesuai dengan perkembangan data kita.
+
+### Kelebihan dan Kekurangan MongoDB sebagai salah satu NoSQL
+
+#### Kelebihan
+
+Sistem tidak membutuhkan Tabel
+
+Tidak perlu menggunakan Tabel yang terstruktur
+
+By Default sudah menggunakan JSON(JavaScript Object Notation), sehingga memudahkan integrasi dengan JavaScript
+
+Performa lebih cepat dengan kemampuan menampung banyak data yang bervariasi
+
+#### Kekurangan
+
+Tidak mendukung transaksi
+
+Masalah konsistensi data
+
+Menggunakan banyak memory
+
+Hanya bisa menampung maksimal 16MB disetiap document
+
+### Instalasi MongoDB
+
+https://docs.mongodb.com/manual/administration/install-community/
+
+### MongoDB GUI Tools
+
+untuk menggunakan MongoDB, kita bisa menggunakan MongoDB Compass UI untuk mengexplore DB yang ingin kita buat.
+
+https://www.mongodb.com/products/compass
+
+### MongoDB Atlas
+
+Selain menggunakan Mongo compass, kita juga bisa menggunakan management tool / admin UI versi cloudnya. kita bisa menggunakan MongoDB atlas.
+
+https://www.mongodb.com/cloud/atlas
 
 ***
 
