@@ -721,9 +721,11 @@ Heroku adalah Platform cloud berbasis wadah sebagai Layanan (PaaS). Pengembang m
 
 #### Cara deploy repo github menggunakan heroku
 
-1. Pastikan kamu sudah memiliki repository Github beserta script-nya
-2. Login terlebih dahulu ke akun Heroku dan Github, Jika belum membuat akun, silahkan buat akunnya terlebih dahulu.
-3. Jika sudah login, buat aplikasi baru dengan memilih tombol New dibagian sudut kanan atas.
+1. Pastikan kamu sudah memiliki repository Github beserta script-nya.
+
+3. Login terlebih dahulu ke akun Heroku dan Github, Jika belum membuat akun, silahkan buat akunnya terlebih dahulu.
+
+4. Jika sudah login, buat aplikasi baru dengan memilih tombol New dibagian sudut kanan atas.
 ![image](https://user-images.githubusercontent.com/66278794/183976624-358f3acc-3b2b-4c49-9c62-5485a31ece9e.png)
 
 5. Masukan nama aplikasinya sesuai keinginan kamu, lalu klik Create App.
@@ -736,6 +738,7 @@ Heroku adalah Platform cloud berbasis wadah sebagai Layanan (PaaS). Pengembang m
 ![image](https://user-images.githubusercontent.com/66278794/183976823-4dc0fcab-9fe5-4eea-8c4c-8e1b307d2b89.png)
 
 9. Klik Authorize Heroku.
+
 ![image](https://user-images.githubusercontent.com/66278794/183976870-5b12961a-5d27-4cc7-b899-9b8caea91094.png)
 
 10. Lalu masukan nama repository Github kamu, klik search.
@@ -751,12 +754,155 @@ Heroku adalah Platform cloud berbasis wadah sebagai Layanan (PaaS). Pengembang m
 ![image](https://user-images.githubusercontent.com/66278794/183977039-6adbaff2-d96e-4d9f-9f84-46681f4bfa42.png)
 
 15. Selesai.
-16. Tambahan. Jika saat dilihat, tampilannya seperti gambar di bawah ini, maka pada script yang terdapat pada repository kamu terdapat kesalahan koding, artinya kamu harus memperbaikinya.
+
+17. Tambahan. Jika saat dilihat, tampilannya seperti gambar di bawah ini, maka pada script yang terdapat pada repository kamu terdapat kesalahan koding, artinya kamu harus memperbaikinya.
 ![image](https://user-images.githubusercontent.com/66278794/183977123-dcc55152-1036-4066-8c73-8986a26e6e37.png)
 
 ***
 
 ## 5. Docker
+
+Docker adalah software yang menjalankan suatu aplikasi menggunakan container.
+
+![image](https://user-images.githubusercontent.com/66278794/183978779-70ec5b2e-8f26-4dc8-a2f3-98a1353aac87.png)
+
+![image](https://user-images.githubusercontent.com/66278794/183978874-ea7fdd24-eaf1-430d-a13f-cdbff61fb55c.png)
+
+![image](https://user-images.githubusercontent.com/66278794/183978935-5df435b8-9fa2-4edf-a10f-a321c31ef535.png)
+
+Docker men-sharing kernel dari host OS, serta meng-container-kan suatu aplikasi agar dapat dijalankan dimana saja dan kapan saja.
+
+Aplikasi yg berjalan di dalam container docker tidak terpengaruh oleh faktor luar karena terisolasi.
+
+![image](https://user-images.githubusercontent.com/66278794/183979344-e72156ca-e308-4029-917d-acb6c88a5db3.png)
+
+Docker berfungsi sebagai penyedia layanan virtual bagi aplikasi yg diinstall pada sebuah host. 
+
+Docker akan menyediakan hal-hal yang diperlukan untuk aplikasi mulai dari akses file, koneksi internet, hingga port agar aplikasi dapat berjalan dengan mulus
+
+### Container vs VM
+
+![image](https://user-images.githubusercontent.com/66278794/183979467-6391aa6d-7638-40a2-822c-aa822088f489.png)
+
+VM memakan banyak resource dan waktu utk booting karena melakukan virtualisasi pada host hardware-nya. 
+
+Sedangkan container kebalikannya dari vm, container melakukan virtualisasi pada host OS-nya
+
+### Fundamental Docker
+
+![image](https://user-images.githubusercontent.com/66278794/183979728-ee21a3d5-0152-41ac-936a-970c5855f0f8.png)
+
+Docker File, Blueprint untuk membuat image.
+
+Image, Template untuk menjalankan container.
+
+Container, Perwujudan dari image.
+
+Docker Registry, Tempat untuk upload/download image
+
+### Instalasi Docker
+
+https://www.docs.docker.com/get-docker
+
+### Perintah dasar Docker
+
+1. Melihat Images.
+
+```$ docker images```
+
+2. Download Images.
+
+```$ docker pull debian (latest)```
+
+```$ docker pull debian:9.8 (certain version)```
+
+3. Melihat Docker Container yang sedang running.
+
+```$ docker cotainer ls```
+
+4. Melihat semua list Docker Container.
+
+```$ docker container ls -a```
+
+5. Membuat Docker Container.
+
+```$ docker container create --name mongodb1 mongo:4.0```
+
+6. Start Container.
+
+```$ docker container start mongodb1```
+
+7. Mencari Images.
+
+```$ docker search mysql```
+
+8. Stop Container.
+
+```$ docker container stop mongodb1```
+
+9. Menghapus Container.
+
+```$ docker container rm mongodb1```
+
+10. Membuat Container yang dapat diakses dari host. Dengan kata lain, membuka port pada Container sehingga service yang dijalankan dapat diakses dari luar.
+
+```$ docker container create --name mongodb2 -p 1234:27017 mongo```
+
+11. Menjalankan Images secara langsung. Sehingga, container akan otomatis terbentuk dari Image tersebut.
+
+```$ docker run -itd mongo```
+
+12. Menjalankan Image secara langsung dan otomatis membuat container. Dan juga membuka port untuk container tersebut. Contohnya pada Image mysql/mysql-server.
+
+```$ docker run -d --name mysqlserver1 -p 1234:3306 mysql/mysql-server```
+
+13. Masuk ke dalam Container.
+
+```$ docker exec -it mongodb2 bash```
+
+Nanti mungkin anda akan menemui beberapa sedikit masalah, seperti Image yang tidak bisa di start dengan perintah:
+
+```$ docker container start namacontainer```
+
+walaupun Container tersebut sudah dibuat sebelumnya. Tetapi Image tersebut akan jalan ketika langsung dijalankan dari Image-nya, contohnya seperti mysql atau mysql/mysql-server.
+
+Jadi ada langkah tertentu untuk menjalankan Image tertentu. Seperti mysql/mysql-server, anda bisa melihat dokumentasi resminya. Container mysql dapat di jalankan dengan perintah:
+
+```$ docker run -itd --name mysqlserver1 -p 1234:3306 mysql/mysql-server```
+
+Ketika dilihat pada running Container, maka Container tersebut langsung berjalan.
+
+Jadi perintah tersebut akan membuat container otomatis dari image mysql/mysql-server. Jika image mysql/mysql-server tidak ada di repository local, maka dia akan download image dari registry.
+
+```$ docker ps```
+
+atau 
+
+```$ docker container ls```
+
+14. Membuat Volume
+
+```$ docker volume create data1```
+
+```$ docker volume create data2```
+
+Untuk melihat volume yang sudah dibuat pada docker, ketikkan perintah:
+
+```$ docker volume ls```
+
+Untuk membuat container dengan mencantumkan volume yang ada dapat menggunakan opsi -v.
+
+```$ docker run -itd --name mysqlserver1 -v data1:/var/lib/mysql -p 1234:3306 mysql```
+
+Perintah tersebut akan me-mount volume data1 ke direktori /var/lib/mysql/ pada container mysqlserver1.
+
+15. Melakukan Commit Container
+
+```$ docker commit container1 image1```
+
+Perintah tersebut akan membuat image dengan nama image1 dari container yang sedang running yaitu container1. Jadi kondisi container1 yang sekarang akan disimpan dalam image1.
+
+Jika terjadi perubahan pada container1, maka ketika nanti membuat container baru dari image1 maka perubahan tersebut akan tetap ada.
 
 ***
 
