@@ -15,6 +15,72 @@
 
 ## 1. Authentication & Authorization
 
+### Authentication
+
+Proses dimana seorang user (melalui berbagai macam akses fisik berupa komputer dll) mendapatkan hak akses kepada suatu entity.
+
+Seorang user melakukan login kedalam suatu infrastruktur jaringan dan sistem mengenali user ID dan menerimanya untuk kemudian diberikan akses, sesuai dengan authorisasi yang dia terima.
+
+Responses to authentication prompts can be categorized into:
+
+Knowledge-Based: “Something You Know”
+
+Possession-Based: “Something You Have”
+
+Inherence-Based: “Something You Are”
+
+![image](https://user-images.githubusercontent.com/66278794/183959910-a77d8121-733d-45b9-af07-03a5053320d9.png)
+
+#### Jenis-Jenis Autentikasi
+
+1. Single Factor Authentication
+
+Jenis autentikasi yang meminta pengguna untuk memasukkan ID pengguna. Kemudian proses autentikasi pun akan berjalan dengan meminta pengguna untuk memasukkan password yang tepat dan sesuai dengan ID pengguna.
+
+![image](https://user-images.githubusercontent.com/66278794/183957660-bd5fb687-0e3b-473c-bad9-8ae646e444e0.png)
+
+2. Multi Factor Authentication
+
+jenis autentikasi yang mewajibkan pengguna untuk memverifikasi tiga jenis identitas, misalnya ID pengguna, sidik jari/wajah, dan beberapa pertanyaan yang berhubungan dengan pengguna.
+
+![image](https://user-images.githubusercontent.com/66278794/183957795-344272f7-d846-41c8-bb28-b3e487bf03e7.png)
+
+### Authorization
+
+Proses penentuan apakah user tersebut diizinkan / ditolak untuk melakukan satu atau beberapa action akses terhadap resources tertentu dalam sistem.
+
+User login terhadap sistem dengan menggunakan user-ID dan password, kemudian sistem mengenalinya dan user mendapatkan akses atau ditolak terhadap suatu resource sistem tertentu.
+
+![image](https://user-images.githubusercontent.com/66278794/183943966-539183d4-9260-48bf-9f82-85f9b1395f11.png)
+
+### Encryption
+
+Proses teknis yang mengonversikan informasi menjadi kode rahasia, sehingga mengaburkan data yang Anda kirim, terima, atau simpan.
+
+##### Jenis-jenis Enkripsi
+
+1. Symmetric encryption Enkripsi yang terkait atau identik digunakan baik untuk proses enkripsi maupun dekripsi. Dalam beberapa kalangan, kunci yang dibagikan disebut sebagai "rahasia bersama", karena pengirim/sistem yang memantau enkripsi harus membagikan Kunci ini kepada siapa pun yang berwenang mendekripsi pesan.
+
+2. Asymmetric encryption Disebut juga sebagai enkripsi kunci publik, berbagai kunci digunakan untuk proses enkripsi dan dekripsi. Satu kunci dibagikan secara publik dan dapat digunakan oleh siapa pun (maka disebut "enkripsi kunci publik"), sementara yang satu lagi adalah kunci pribadi. Hal ini membuat sistem kunci asimetris menjadi lebih aman daripada algoritme kunci simetris, karena peretas atau penjahat cyber tidak dapat menyalin kunci saat dikirimkan.
+
+![image](https://user-images.githubusercontent.com/66278794/183958128-a571c791-eed8-480e-b854-5bcb91993ab4.png)
+
+### JSON Web Token 
+
+Sebuah JSON Object yang didefinisikan dalam RFC 7519 sebagai cara aman untuk mewakili sekumpulan informasi antara dua pihak.
+
+Token terdiri dari Header, Content, dan Signature.
+
+![image](https://user-images.githubusercontent.com/66278794/183947913-ab92d8b3-40cb-4561-88a0-5bb7b03b3c28.png)
+
+![image](https://user-images.githubusercontent.com/66278794/183949804-794e8f78-6478-463d-a6cf-01fa835fceab.png)
+
+### Session VS Cookie VS LocalStorage
+
+![image](https://user-images.githubusercontent.com/66278794/183951907-7718142e-bb0d-4c6f-848d-12180a349fd3.png)\
+
+### Session Based Authentication
+
 ```html
 // views/index.html
 
@@ -140,6 +206,18 @@ app.listen(PORT, () => console.log(`Server Running at port ${PORT}`));
 ***
 
 ## 2. Sequelize
+
+Sequelize adalah ORM (Object Relational Mapping) Node JS yang berbasis promise.
+
+Sequelize mendukung sebagian besar relational Database seperti MySQL, PostgresQL, MariaDB, SQLite dan Miscrosoft SQL Server.
+
+Dengan fitur fitur di Sequelize, kita bisa mengelola dan mengatur data di database kita dengan cepat, dan efisien.
+
+ORM adalah suatu metode/teknik pemrograman yang digunakan untuk mengkonversi data dari lingkungan bahasa pemrograman berorientasi objek (OOP) dengan lingkungan database relational.  
+
+![image](https://user-images.githubusercontent.com/66278794/183961343-8cfe10fd-ae15-403b-9545-6d7b6c0f9144.png)
+
+
 
 ***
 
