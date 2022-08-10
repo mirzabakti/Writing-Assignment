@@ -715,6 +715,45 @@ const UserModel = mongoose.model("user", UserSchema);
 module.exports = UserModel;
 ```
 
+### Heroku
+
+Heroku adalah Platform cloud berbasis wadah sebagai Layanan (PaaS). Pengembang menggunakan Heroku untuk menyebarkan, mengelola, dan menskalakan aplikasi modern. Platform kami elegan, fleksibel, dan mudah digunakan , menawarkan pengembang jalur paling sederhana untuk membawa aplikasi mereka ke pasar.
+
+#### Cara deploy repo github menggunakan heroku
+
+1. Pastikan kamu sudah memiliki repository Github beserta script-nya
+2. Login terlebih dahulu ke akun Heroku dan Github, Jika belum membuat akun, silahkan buat akunnya terlebih dahulu.
+3. Jika sudah login, buat aplikasi baru dengan memilih tombol New dibagian sudut kanan atas.
+![image](https://user-images.githubusercontent.com/66278794/183976624-358f3acc-3b2b-4c49-9c62-5485a31ece9e.png)
+
+5. Masukan nama aplikasinya sesuai keinginan kamu, lalu klik Create App.
+![image](https://user-images.githubusercontent.com/66278794/183976690-bab88acf-370d-400b-a838-b32d13c3ce23.png)
+
+7. Jika sudah, Pastikan kamu sudah login dengan Github dan pastikan juga kamu sudah mempunyai repository yang ingin dihubungkan dengan Github.
+![image](https://user-images.githubusercontent.com/66278794/183976749-05912907-00c9-40d2-b3f0-cfd451e4a47b.png)
+
+8. Cari Github pada Connect to Github, lalu klik.
+![image](https://user-images.githubusercontent.com/66278794/183976823-4dc0fcab-9fe5-4eea-8c4c-8e1b307d2b89.png)
+
+9. Klik Authorize Heroku.
+![image](https://user-images.githubusercontent.com/66278794/183976870-5b12961a-5d27-4cc7-b899-9b8caea91094.png)
+
+10. Lalu masukan nama repository Github kamu, klik search.
+![image](https://user-images.githubusercontent.com/66278794/183976918-e5725cba-bebe-4106-a215-971bb4a9ae3d.png)
+
+11. Jika ada, klik Connect.
+![image](https://user-images.githubusercontent.com/66278794/183976962-dcaae48e-0caf-4487-8f14-4198d1e165a7.png)
+
+12. Jika sudah terhubung, ceklis pada bagian Wait for CI to pass before deploy dan klik tombol Enable Automatic Deploy, lanjutkan dengan klik Deploy Branch.
+![image](https://user-images.githubusercontent.com/66278794/183976994-2ebd5da7-109e-40b7-a0b0-efad38f63403.png)
+
+13. Tunggu prosesnya, jika selesai, klik view untuk memastikan telah terhubung.
+![image](https://user-images.githubusercontent.com/66278794/183977039-6adbaff2-d96e-4d9f-9f84-46681f4bfa42.png)
+
+15. Selesai.
+16. Tambahan. Jika saat dilihat, tampilannya seperti gambar di bawah ini, maka pada script yang terdapat pada repository kamu terdapat kesalahan koding, artinya kamu harus memperbaikinya.
+![image](https://user-images.githubusercontent.com/66278794/183977123-dcc55152-1036-4066-8c73-8986a26e6e37.png)
+
 ***
 
 ## 5. Docker
