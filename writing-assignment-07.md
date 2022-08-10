@@ -81,6 +81,12 @@ Token terdiri dari Header, Content, dan Signature.
 
 ### Session Based Authentication
 
+```npm init -y```
+
+```npm install express cookie-parser express-session```
+
+```npm install --save-dev nodemon```
+
 ```html
 // views/index.html
 
@@ -202,6 +208,172 @@ app.listen(PORT, () => console.log(`Server Running at port ${PORT}`));
 
 ![image](https://user-images.githubusercontent.com/66278794/183934243-d436f5bc-017b-4726-8e39-7846823d7f7e.png)
 
+### Token Based Authentication
+
+```npm init -y```
+
+```npm install express body-parser jsonwebtoken```
+
+```npm install --save-dev nodemon```
+
+```js
+// auth.js
+
+const express = require("express");
+const app = express();
+const jwt = require("jsonwebtoken");
+const bodyParser = require("body-parser");
+
+const port = 3000;
+
+app.use(bodyParser.json());
+
+const authenticateJWT = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+    const token = authHeader.split(" ")[1];
+
+    jwt.verify(token, accessTokenSecret, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
+};
+
+const users = [
+  {
+    username: "terra",
+    password: "password123admin",
+    role: "admin",
+  },
+  {
+    username: "dave",
+    password: "password123member",
+    role: "member",
+  },
+];
+
+app.use(bodyParser.json());
+const accessTokenSecret = "youraccesstokensecret";
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find((user) => {
+    return user.username === username && user.password === password;
+  });
+
+  if (user) {
+    const token = jwt.sign(
+      { username: user.username, role: user.role },
+      accessTokenSecret
+    );
+    res.json({
+      accessToken: token,
+    });
+  } else {
+    res.send("Username or password incorrect");
+  }
+});
+
+app.get("/ping", (req, res) => {
+  res.send("server jalan");
+});
+
+app.listen(port, () => {
+  console.log(`Running in port ${port}`);
+});
+```
+
+```js
+const express = require("express");
+const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
+
+const app = express();
+
+const accessTokenSecret = "youraccesstokensecret";
+
+app.use(bodyParser.json());
+
+const authenticateJWT = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+    const token = authHeader.split(" ")[1];
+
+    jwt.verify(token, accessTokenSecret, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
+};
+
+const books = [
+  {
+    author: "Robert Martin",
+    country: "USA",
+    language: "English",
+    pages: 209,
+    title: "Clean Code",
+    year: 2008,
+  },
+  {
+    author: "Dave Thomas & Andy Hunt",
+    country: "USA",
+    language: "English",
+    pages: 784,
+    title: "The Pragmatic Programmer",
+    year: 1999,
+  },
+  {
+    author: "Kathy Sierra, Bert Bates",
+    country: "USA",
+    language: "English",
+    pages: 928,
+    title: "Head First Java",
+    year: 2003,
+  },
+];
+
+app.get("/books", authenticateJWT, (req, res) => {
+  res.json(books);
+});
+
+app.post("/books", authenticateJWT, (req, res) => {
+  if (req.user.role === "admin") {
+    const newBook = {
+      author: req.body.author,
+      country: req.body.country,
+      language: req.body.language,
+      pages: req.body.pages,
+      title: req.body.title,
+      year: req.body.year,
+    };
+
+    books.push(newBook);
+    res.send("Book added successfully");
+  } else {
+    res.send("You are not an admin");
+  }
+});
+
+app.listen(4000, () => {
+  console.log("Books service started on port 4000");
+});
+```
 
 ***
 
